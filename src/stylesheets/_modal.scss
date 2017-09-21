@@ -1,0 +1,67 @@
+@mixin modalInputContainer () {
+	display: flex;
+	margin: 30px 10px;
+}
+
+.titleInputContainer {
+	@include modalInputContainer;
+	align-items: center;
+	input {
+		padding: 8px 10px;
+		flex: 1;
+		font-size: 1em;
+	}
+}
+
+.descriptionInputContainer {
+	@include modalInputContainer;
+  height: 110px;
+  label {
+		position: relative;
+		top: 7px;
+  }
+  textarea {
+  	flex: 1;
+	  padding: 8px 10px;
+	  font-size: 1em;
+	  resize: none;
+  }
+}
+
+.datePickerContainer {
+	@include modalInputContainer
+	align-items: center;
+	span {
+		padding: 0 20px;
+	}
+	select {
+		flex: 1;
+		height: 30px;
+	}
+}
+
+label {
+	width: 100px;
+}
+
+.modalBtn {
+	background-color: rgb(0,141,216);
+  color: white;
+  width: 180px;
+  text-align: center;
+  border-radius: 5px;
+  padding: 10px 15px;
+  margin: 0 10px;
+  border-style: none;
+  font-size: 16px;
+  position: relative;
+  left: 100px;
+  cursor: pointer;
+  &:hover {
+  	background-color: rgb(60,83,154);
+  }
+  &:first-child {
+  	margin-left: 100px;
+  }
+}
+
