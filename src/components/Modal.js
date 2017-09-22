@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { default as ReactModal } from 'react-modal'
-import { monthNameArray, yearArray, getDateOptionsArray } from '../helpers/utils'
+import { monthNameArray, yearArray, getDateOptionsArray, getFormattedTodoObj } from '../helpers/utils'
 
 const modalStyles = {
   content: {
@@ -13,31 +13,42 @@ const modalStyles = {
 }
 
 export default function Modal (props) {
-	function addTodo () {
+  const {updateYear, updateDateArray, updateMonth, isOpen, closeModal, updateTodoTitle,
+    updateDate, dateOptionsArray, month, year, date, updateTodoDescription, todoDescription,
+    todoTitle, isSubmitDisabled, addTodo, isEditing, editTodo } = props
+
+	function handleClickSave () {
+    if (isEditing) {
+      editTodo(isEditing, getFormattedTodoObj(month, date, year, todoTitle, todoDescription, false))
+    } else {
+      addTodo(getFormattedTodoObj(month, date, year, todoTitle, todoDescription, false))
+    }
+    closeModal()
 	}
 
 	function handleChangeYear (e) {
-		props.updateYear(e.target.value)
-		props.updateDateArray(props.month, e.target.value)
+		updateYear(e.target.value)
+		updateDateArray(month, e.target.value)
 	}
 
 	function handleChangeMonth (e) {
-		props.updateMonth(e.target.value)
-		props.updateDateArray(e.target.value, props.year)
+		updateMonth(e.target.value)
+		updateDateArray(e.target.value, year)
 	}
+
   return (
-    <ReactModal style={modalStyles} isOpen={props.isOpen} onRequestClose={props.closeModal}>
+    <ReactModal style={modalStyles} isOpen={isOpen} onRequestClose={closeModal}>
     	<div className="titleInputContainer">
     		<label>Title</label>
-    		<input type='text' name="title" placeholder="Title" onChange={(e) => props.updateTodoTitle(e.target.value)}/>
+    		<input type='text' name="title" placeholder="Title" value={todoTitle} onChange={(e) => updateTodoTitle(e.target.value)}/>
     	</div>
     	<div className="datePickerContainer">
     		<label>Due Date</label>
-        <select id="day" name="day" className="dateInput" onChange={(e) => props.updateDate(e.target.value)}>
-        	{props.dateOptionsArray.map((date) => <option key={date}>{date}</option>)}
+        <select id="day" name="day" className="dateInput" onChange={(e) => updateDate(e.target.value)}>
+        	{dateOptionsArray.map((date) => <option key={date}>{date}</option>)}
         </select>
 	      <span>/</span>
-        <select id="month" name="month" className="dateInput" defaultValue={props.month} onChange={handleChangeMonth}>
+        <select id="month" name="month" className="dateInput" defaultValue={month} onChange={handleChangeMonth}>
           {monthNameArray.map((monthName) => <option key={monthName}>{monthName}</option>)}
         </select>
 	      <span>/</span>
@@ -48,24 +59,24 @@ export default function Modal (props) {
       <div className="descriptionInputContainer">
       	<label>Description</label>
         <textarea
-          onChange={(e) => props.updateTodoDescription(e.target.value)}
-          value={props.todoText}
+          onChange={(e) => updateTodoDescription(e.target.value)}
+          value={todoDescription}
           maxLength={140}
           type='text'
           className="descriptionInput"
           placeholder="Description" />
       </div>
       <button
-        onClick={addTodo}
+        onClick={handleClickSave}
         className="modalBtn"
-        disabled={props.isSubmitDisabled}
+        disabled={isSubmitDisabled}
         >
           {'Save'}
       </button>
       <button
         onClick={addTodo}
         className="modalBtn"
-        disabled={props.isSubmitDisabled}
+        disabled={isSubmitDisabled}
         >
           {'Mark As Complete'}
       </button>

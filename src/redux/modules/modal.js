@@ -1,4 +1,5 @@
-import { todayDate, todayMonthName, todayYear, getDateOptionsArray } from '../../helpers/utils'
+import { fromJS } from 'immutable'
+import { todayDate, todayMonthName, todayYear, getDateOptionsArray, monthNameArray } from '../../helpers/utils'
 
 const OPEN_MODAL = 'OPEN_MODAL'
 const CLOSE_MODAL = 'CLOSE_MODAL'
@@ -8,6 +9,7 @@ const UPDATE_YEAR = 'UPDATE_YEAR'
 const UPDATE_MONTH = 'UPDATE_MONTH'
 const UPDATE_DATE = 'UPDATE_DATE'
 const UPDATE_DATE_ARRAY = 'UPDATE_DATE_ARRAY'
+const CLEAR_MODAL = 'CLEAR_MODAL'
 
 export function openModal () {
   return {
@@ -18,6 +20,12 @@ export function openModal () {
 export function closeModal () {
   return {
     type: CLOSE_MODAL
+  }
+}
+
+export function clearModal () {
+  return {
+    type: CLEAR_MODAL
   }
 }
 
@@ -63,58 +71,67 @@ export function updateDateArray (month, year) {
   }
 }
 
-const initialState = {
-  isOpen: true,
+export function openAndFillOutModal (todoObj) {
+  const d = new Date(todoObj.date)
+  const date = d.getDate()
+  const month = monthNameArray[d.getMonth()]
+  const year = d.getFullYear()
+  return function (dispatch, getState) {
+    dispatch(openModal())
+    dispatch(updateDate(date))
+    dispatch(updateMonth(month))
+    dispatch(updateYear(year))
+    dispatch(updateTodoTitle(todoObj.todoTitle))
+    dispatch(updateTodoDescription(todoObj.todoDescription))
+  }
+}
+
+const initialState = fromJS({
+  isOpen: false,
   todoDescription: '',
   todoTitle: '',
   date: todayDate,
   month: todayMonthName,
   year: todayYear,
   dateArray: getDateOptionsArray(todayMonthName, todayYear)
-}
+})
 
 export default function modal (state = initialState, action) {
   switch (action.type) {
     case OPEN_MODAL :
-      return {
-        ...state,
+      return state.merge({
         isOpen: true,
-      }
+      })
     case CLOSE_MODAL :
-      return {
-        ...state,
+      return state.merge({
         isOpen: false,
-      }
+      })
     case UPDATE_TODO_TITLE :
-      return {
-        ...state,
+      return state.merge({
         todoTitle: action.todoTitle,
-      }
+      })
     case UPDATE_DATE :
-      return {
-        ...state,
+      return state.merge({
         date: action.date,
-      }
+      })
     case UPDATE_MONTH :
-      return {
-        ...state,
+      return state.merge({
         month: action.month,
-      }
+      })
     case UPDATE_YEAR :
-      return {
-        ...state,
+      return state.merge({
         year: action.year,
-      }
+      })
     case UPDATE_TODO_DESCRIPTION :
-      return {
-        ...state,
+      return state.merge({
         todoDescription: action.todoDescription,
-      }
+      })
     case UPDATE_DATE_ARRAY :
-      return {
-        ...state,
+      return state.merge({
         dateArray: action.dateArray
-      }
+      })
+    case CLEAR_MODAL :
+      return initialState
     default :
       return state
   }

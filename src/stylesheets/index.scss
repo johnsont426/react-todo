@@ -1,6 +1,13 @@
+$ultraLightGray: rgb(231,231,231);
+$lightGray: rgb(179,179,179);
+$darkGray: rgb(156,156,156);
+$blue: rgb(0,141,216);
+
 @import 'todos';
 @import 'sidebar';
 @import 'modal';
+@import 'singleTodo';
+@import 'hamburgerIcon';
 
 body {
 	margin: 0

@@ -19,3 +19,17 @@ export function getDateOptionsArray (monthName, year) {
   const numberOfDaysInTheMonth = new Date(year, month + 1, 0).getDate()
   return dateArray.slice(0, numberOfDaysInTheMonth)
 }
+
+function getFormattedDate (month, date, year) {
+  return `${monthNameArray.indexOf(month) + 1}/${date}/${year}`
+}
+
+export function getFormattedTodoObj (month, date, year, todoTitle, todoDescription, isDone) {
+  return {
+    timeStamp: Date.now(),
+    date: getFormattedDate(month, date, year),
+    todoTitle,
+    todoDescription,
+    isDone,
+  }
+}

@@ -1,3 +1,26 @@
 .todosContainer {
 	width: 72.25%;
+	padding: 20px;
+}
+
+.singleTodoList {
+	padding: 0;
+}
+
+.addNewTodo {
+	font-size: 1.2em;
+	color: $blue;
+	padding: 10px;
+	list-style: none;
+	cursor: pointer;
+	i {
+		margin: 0 10px;
+	}
+}
+
+.todoTitle {
+	cursor: pointer;
+	&:hover {
+		color: $blue;
+	}
 }

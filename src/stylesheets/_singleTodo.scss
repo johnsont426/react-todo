@@ -1,0 +1,19 @@
+.singleTodo {
+	font-size: 1.2em;
+	border-top: 1px solid $ultraLightGray;
+	padding: 10px;
+	list-style: none;
+	i {
+		color: $darkGray;
+		margin: 0 10px;
+		&:last-child {
+			float: right;
+			font-size: 1.2em;
+		}
+	}
+
+	&.isDone {
+		color: $lightGray;
+		text-decoration: line-through;
+	}
+}
