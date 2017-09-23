@@ -7,10 +7,22 @@ import * as todosActionCreators from '../redux/modules/todos'
 import * as sidebarActionCreators from '../redux/modules/sidebar'
 
 function mapStateToProps ({todos, sidebar}) {
+  function getTodosArray (tabName) {
+    const allTodosArray = todos.get('allTodosArray')
+    if (tabName === 'All Todos') {
+      return allTodosArray.toJS()
+    } else if (tabName === 'Completed') {
+      return allTodosArray.filter((ele) => ele.get('isDone') === true).toJS()
+    } else {
+      return allTodosArray.filter((ele) => ele.get('isDone') === false).toJS()
+    }
+
+  }
   return {
-    todosArray: todos.get('todosArray').toJS(),
-    numbersOfTodos: todos.get('todosArray').size,
+    todosArray: getTodosArray(sidebar.get('activated')),
+    numbersOfTodos: todos.get('allTodosArray').size,
     isSidebarOpen: sidebar.get('isOpen'),
+    activated: sidebar.get('activated'),
   }
 }
 

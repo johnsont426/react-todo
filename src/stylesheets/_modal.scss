@@ -63,5 +63,9 @@ label {
   &:first-child {
   	margin-left: 100px;
   }
+  &.disabled {
+  	background: #C6C6C6;
+  	cursor: default;
+  }
 }
 

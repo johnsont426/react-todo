@@ -6,7 +6,7 @@ import { monthNameArray, yearArray, getDateOptionsArray, getFormattedTodoObj } f
 const modalStyles = {
   content: {
     width: 500,
-    margin: '0px auto',
+    margin: '100px auto',
     height: 350,
     padding: '0 30px 10px 30px',
   },
@@ -15,11 +15,14 @@ const modalStyles = {
 export default function Modal (props) {
   const {updateYear, updateDateArray, updateMonth, isOpen, closeModal, updateTodoTitle,
     updateDate, dateOptionsArray, month, year, date, updateTodoDescription, todoDescription,
-    todoTitle, isSubmitDisabled, addTodo, isEditing, editTodo } = props
+    todoTitle, isSubmitDisabled, isMarkAsCompleteDisabled, addTodo, editingTodo, editTodo } = props
+
+  const submitButtonStyle = isSubmitDisabled ? 'modalBtn disabled' : 'modalBtn'
+  const markAsCompleteButtonStyle = isMarkAsCompleteDisabled ? 'modalBtn disabled' : 'modalBtn'
 
 	function handleClickSave () {
-    if (isEditing) {
-      editTodo(isEditing, getFormattedTodoObj(month, date, year, todoTitle, todoDescription, false))
+    if (editingTodo) {
+      editTodo(editingTodo.toJS(), getFormattedTodoObj(month, date, year, todoTitle, todoDescription, editingTodo.get('isDone')))
     } else {
       addTodo(getFormattedTodoObj(month, date, year, todoTitle, todoDescription, false))
     }
@@ -35,6 +38,11 @@ export default function Modal (props) {
 		updateMonth(e.target.value)
 		updateDateArray(e.target.value, year)
 	}
+
+  function handleClickMarkAsComplete () {
+    editTodo(editingTodo.toJS(), getFormattedTodoObj(month, date, year, todoTitle, todoDescription, true))
+    closeModal()
+  }
 
   return (
     <ReactModal style={modalStyles} isOpen={isOpen} onRequestClose={closeModal}>
@@ -68,15 +76,15 @@ export default function Modal (props) {
       </div>
       <button
         onClick={handleClickSave}
-        className="modalBtn"
+        className={submitButtonStyle}
         disabled={isSubmitDisabled}
         >
           {'Save'}
       </button>
       <button
-        onClick={addTodo}
-        className="modalBtn"
-        disabled={isSubmitDisabled}
+        onClick={handleClickMarkAsComplete}
+        className={markAsCompleteButtonStyle}
+        disabled={isMarkAsCompleteDisabled}
         >
           {'Mark As Complete'}
       </button>
