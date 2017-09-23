@@ -1,7 +1,7 @@
 .todosContainer {
 	position: absolute;
 	left: 27.75%;
-	width: 72.25%;
+	width: 69%;
 	padding: 20px;
 	transition: all 0.5s ease-in-out;
 	&.fullWidth {
@@ -16,6 +16,7 @@
 		z-index: -2;
 		&.fullWidth {
 			z-index: initial;
+			width: 100%;
 		}
 	}
 }

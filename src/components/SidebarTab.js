@@ -23,8 +23,10 @@ export default function SidebarTab ({tabName, updateActivated, todoCount, isActi
   return (
     <div onClick={handleClick} className={tabStyle}>
       <div className="tabContainer">
-        <Icon tabName={tabName}/>
-        <p className="tabName">{tabName}</p>
+        <div className="iconAndTabName">
+          <Icon tabName={tabName}/>
+          <p className="tabName">{tabName}</p>
+        </div>
         <div className="count">{todoCount}</div>
       </div>
     </div>
