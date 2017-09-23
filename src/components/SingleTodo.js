@@ -25,3 +25,13 @@ export default function SingleTodo ({todoObj, deleteTodo, updateIsDone, updateEd
     </li>
   )
 }
+
+const { func, object } = PropTypes
+
+SingleTodo.propTypes = {
+  todoObj: object.isRequired,
+  deleteTodo: func.isRequired,
+  updateIsDone: func.isRequired,
+  updateEditingTodo: func.isRequired,
+  openAndFillOutModal: func.isRequired,
+}

@@ -92,3 +92,26 @@ export default function Modal (props) {
     </ReactModal>
   )
 }
+
+const { func, string, number, bool, array } = PropTypes
+
+Modal.propTypes = {
+  updateYear: func.isRequired,
+  updateDateArray: func.isRequired,
+  updateMonth:func.isRequired,
+  isOpen: bool.isRequired,
+  closeModal: func.isRequired,
+  updateTodoTitle: func.isRequired,
+  updateDate: func.isRequired,
+  dateOptionsArray: array.isRequired,
+  month: string.isRequired,
+  year: number.isRequired,
+  date: number.isRequired,
+  updateTodoDescription: func.isRequired,
+  todoDescription: string.isRequired,
+  todoTitle: string.isRequired,
+  isSubmitDisabled: bool.isRequired,
+  isMarkAsCompleteDisabled: bool.isRequired,
+  addTodo: func.isRequired,
+  editTodo: func.isRequired,
+}

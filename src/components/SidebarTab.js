@@ -14,10 +14,11 @@ function Icon ({tabName}) {
   }
 }
 
-export default function SidebarTab ({tabName, updateActivated, todoCount, isActivated}) {
+export default function SidebarTab ({tabName, updateActivated, todoCount, isActivated, closeSidebar}) {
   const tabStyle = isActivated ? 'tab activated' : 'tab'
   function handleClick () {
     updateActivated(tabName)
+    closeSidebar()
   }
   return (
     <div onClick={handleClick} className={tabStyle}>
@@ -28,4 +29,14 @@ export default function SidebarTab ({tabName, updateActivated, todoCount, isActi
       </div>
     </div>
   )
+}
+
+const { string, func, number, bool } = PropTypes
+
+SidebarTab.propTypes = {
+  tabName: string.isRequired,
+  updateActivated: func.isRequired,
+  todoCount: number.isRequired,
+  isActivated: bool.isRequired,
+  closeSidebar:func.isRequired,
 }

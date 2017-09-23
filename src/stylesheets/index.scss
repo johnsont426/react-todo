@@ -3,6 +3,18 @@ $lightGray: rgb(179,179,179);
 $darkGray: rgb(156,156,156);
 $blue: rgb(0,141,216);
 
+@mixin breakPointOne {
+  @media (max-width: 1025px) {
+    @content;
+  }
+}
+
+@mixin breakPointTwo {
+  @media (max-width: 885px) {
+    @content;
+  }
+}
+
 @import 'todos';
 @import 'sidebar';
 @import 'modal';
@@ -17,5 +29,7 @@ body {
 	display: flex;
 	margin: 0 auto;
 	max-width: 1200px;
+	min-height: 100vh;
 	overflow: hidden;
+	position: relative;
 }

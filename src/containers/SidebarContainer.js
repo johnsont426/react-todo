@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as todosActionCreators from '../redux/modules/todos'
 import * as modalActionCreators from '../redux/modules/modal'
+import * as sidebarActionCreators from '../redux/modules/sidebar'
 
 function mapStateToProps ({sidebar}) {
   return {
@@ -14,7 +15,8 @@ function mapStateToProps ({sidebar}) {
 function mapDispatchToProps (dispatch) {
   return bindActionCreators({
     ...todosActionCreators,
-    ...modalActionCreators}, dispatch)
+    ...modalActionCreators,
+    ...sidebarActionCreators}, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Sidebar)

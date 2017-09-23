@@ -4,6 +4,7 @@ import { ModalContainer, SingleTodoContainer } from '../containers'
 
 export default function Todos ({todosArray, openModal, numbersOfTodos, clearModal, openSidebar, closeSidebar, isSidebarOpen, clearEditingTodo, activated}) {
 	let hamburgerIconStyle = isSidebarOpen ? 'hamburgerIcon open' : 'hamburgerIcon'
+  let todosContainerStyle = isSidebarOpen ? 'todosContainer' : 'todosContainer fullWidth'
 
   function handleClickAddNewTodo () {
     clearEditingTodo()
@@ -20,7 +21,7 @@ export default function Todos ({todosArray, openModal, numbersOfTodos, clearModa
   }
 
   return (
-    <div className="todosContainer">
+    <div className={todosContainerStyle}>
     	<div className={hamburgerIconStyle} onClick={handleClickHamburgerIcon}>
 				<span></span>
 				<span></span>
@@ -39,4 +40,18 @@ export default function Todos ({todosArray, openModal, numbersOfTodos, clearModa
       </ul>
     </div>
   )
+}
+
+const { func, bool, array, number, string } = PropTypes
+
+Todos.propTypes = {
+  todosArray: array.isRequired,
+  openModal: func.isRequired,
+  numbersOfTodos: number.isRequired,
+  clearModal: func.isRequired,
+  openSidebar: func.isRequired,
+  closeSidebar: func.isRequired,
+  isSidebarOpen: bool.isRequired,
+  clearEditingTodo: func.isRequired,
+  activated: string.isRequired
 }

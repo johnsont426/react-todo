@@ -8,6 +8,31 @@
 	&.open {
 		left: 0;
 	}
+	
+	@include breakPointTwo {
+		display: none;
+		&.open {
+			display: initial;
+			opacity: 0.95;
+			width: 100%;
+			position: absolute;
+			top: 0;
+			left: 0;
+		}
+	}
+}
+
+.closeBtn {
+	display: none;
+	font-size: 1.5em;
+	position: absolute;
+	top: 30px;
+	right: 30px;
+	color: white;
+	cursor: pointer;
+	@include breakPointTwo {
+		display: initial;
+	}
 }
 
 .tabsContainer {
@@ -56,4 +81,15 @@
 			color: white;
 		}
 	}
+
+	@include breakPointOne {
+		.tabContainer {
+			margin-left: 0;
+		}
+	}
+
+	@include breakPointTwo {
+		padding: 20px 30%;
+	}
 }
+
