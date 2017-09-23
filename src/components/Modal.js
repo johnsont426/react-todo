@@ -88,7 +88,6 @@ export default function Modal (props) {
         >
           {'Mark As Complete'}
       </button>
-
     </ReactModal>
   )
 }

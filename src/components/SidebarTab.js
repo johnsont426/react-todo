@@ -16,10 +16,12 @@ function Icon ({tabName}) {
 
 export default function SidebarTab ({tabName, updateActivated, todoCount, isActivated, closeSidebar}) {
   const tabStyle = isActivated ? 'tab activated' : 'tab'
+
   function handleClick () {
     updateActivated(tabName)
     closeSidebar()
   }
+
   return (
     <div onClick={handleClick} className={tabStyle}>
       <div className="tabContainer">

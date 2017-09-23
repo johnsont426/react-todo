@@ -9,6 +9,7 @@ import { getDateOptionsArray } from '../helpers/utils'
 function mapStateToProps ({modal, todos}) {
   const titleLength = modal.get('todoTitle').length
   const descriptionLength = modal.get('todoDescription').length
+
   return {
     isOpen: modal.get('isOpen'),
     isSubmitDisabled: titleLength === 0 || descriptionLength === 0,

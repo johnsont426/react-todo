@@ -16,7 +16,6 @@ function mapStateToProps ({todos, sidebar}) {
     } else {
       return allTodosArray.filter((ele) => ele.get('isDone') === false).toJS()
     }
-
   }
   return {
     todosArray: getTodosArray(sidebar.get('activated')),
