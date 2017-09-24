@@ -3,15 +3,6 @@ import PropTypes from 'prop-types'
 import { default as ReactModal } from 'react-modal'
 import { monthNameArray, yearArray, getDateOptionsArray, getFormattedTodoObj } from '../helpers/utils'
 
-const modalStyles = {
-  content: {
-    width: 500,
-    margin: '100px auto',
-    height: 350,
-    padding: '0 30px 10px 30px',
-  },
-}
-
 export default function Modal (props) {
   const {updateYear, updateDateArray, updateMonth, isOpen, closeModal, updateTodoTitle,
     updateDate, dateOptionsArray, month, year, date, updateTodoDescription, todoDescription,
@@ -45,7 +36,13 @@ export default function Modal (props) {
   }
 
   return (
-    <ReactModal style={modalStyles} isOpen={isOpen} onRequestClose={closeModal}>
+    <ReactModal
+      isOpen={isOpen}
+      onRequestClose={closeModal}
+      className={{
+        base: 'modal',
+        afterOpen: 'modalAfterOpen',
+        beforeClose: 'modalBeforeClose'}}>
     	<div className="titleInputContainer">
     		<label>Title</label>
     		<input type='text' name="title" placeholder="Title" value={todoTitle} onChange={(e) => updateTodoTitle(e.target.value)}/>

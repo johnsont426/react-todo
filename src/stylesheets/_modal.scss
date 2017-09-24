@@ -1,74 +1,134 @@
 @mixin modalInputContainer () {
 	display: flex;
 	margin: 30px 10px;
+	flex-wrap: wrap;
 }
 
-.modal {
-}
+.modalAfterOpen {
+	position: absolute;
+	width: 500px;
+	height: 350px;
+	left: 30%;
+	top: 140px;
+	border: 1px solid #ccc;
+	padding: 0 30px 10px 30px;
+	overflow: auto;
+	background-color: #fff;
+	outline: none;
+	.titleInputContainer {
+		@include modalInputContainer;
+		align-items: center;
+		input {
+			padding: 8px 10px;
+			flex: 1;
+			font-size: 1em;
+		}
+	}
+	.descriptionInputContainer {
+		@include modalInputContainer;
+	  height: 110px;
+	  label {
+			position: relative;
+			top: 7px;
+	  }
+	  textarea {
+	  	flex: 1;
+		  padding: 8px 10px;
+		  font-size: 1em;
+		  resize: none;
+	  }
+	}
+	.datePickerContainer {
+		@include modalInputContainer
+		align-items: center;
+		span {
+			padding: 0 20px;
+		}
+		select {
+			flex: 1;
+			height: 30px;
+		}
+	}
+	label {
+		width: 100px;
+	}
+	.modalBtn {
+		background-color: $blue;
+	  color: white;
+	  width: 180px;
+	  text-align: center;
+	  border-radius: 5px;
+	  padding: 10px 15px;
+	  margin: 0 10px;
+	  border-style: none;
+	  font-size: 16px;
+	  position: relative;
+	  left: 100px;
+	  cursor: pointer;
+	  &:hover {
+	  	background-color: rgb(60,83,154);
+	  }
+	  &:first-child {
+	  	margin-left: 100px;
+	  }
+	  &.disabled {
+	  	background: #C6C6C6;
+	  	cursor: default;
+	  }
+	}
 
-.titleInputContainer {
-	@include modalInputContainer;
-	align-items: center;
-	input {
-		padding: 8px 10px;
-		flex: 1;
-		font-size: 1em;
+	@include breakPointTwo {
+		left: 10%;
+	}
+	
+	@include breakPointThree {
+		left: 5%;
+		width: 350px;
+		padding: 0 10px 10px 10px;
+		.titleInputContainer {
+			margin: 30px 5px;
+			input {
+				padding: 4px 5px;
+			}
+		}
+		.descriptionInputContainer {
+			margin: 30px 5px;
+		  textarea {
+		  	flex: 1;
+			  padding: 8px 10px;
+			  font-size: 1em;
+			  resize: none;
+		  }
+		}
+		.datePickerContainer {
+			margin: 30px 5px;
+			span {
+				padding: 0 5px;
+			}
+		}
+		.modalBtn {
+			left: 0;
+			width: 155px;
+			margin: 0 10px;
+			padding: 10px 5px;
+		}
+	}
+
+	@include breakPointFour {
+		width: 250px;
+		height: 400px;
+		.modalBtn {
+			&:last-child {
+				display: none;
+			}
+		}
 	}
 }
 
-.descriptionInputContainer {
-	@include modalInputContainer;
-  height: 110px;
-  label {
-		position: relative;
-		top: 7px;
-  }
-  textarea {
-  	flex: 1;
-	  padding: 8px 10px;
-	  font-size: 1em;
-	  resize: none;
-  }
-}
 
-.datePickerContainer {
-	@include modalInputContainer
-	align-items: center;
-	span {
-		padding: 0 20px;
-	}
-	select {
-		flex: 1;
-		height: 30px;
-	}
-}
 
-label {
-	width: 100px;
-}
 
-.modalBtn {
-	background-color: $blue;
-  color: white;
-  width: 180px;
-  text-align: center;
-  border-radius: 5px;
-  padding: 10px 15px;
-  margin: 0 10px;
-  border-style: none;
-  font-size: 16px;
-  position: relative;
-  left: 100px;
-  cursor: pointer;
-  &:hover {
-  	background-color: rgb(60,83,154);
-  }
-  &:first-child {
-  	margin-left: 100px;
-  }
-  &.disabled {
-  	background: #C6C6C6;
-  	cursor: default;
-  }
-}
+
+
+
 

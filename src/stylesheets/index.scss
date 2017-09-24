@@ -16,6 +16,12 @@ $blue: rgb(0,141,216);
 }
 
 @mixin breakPointThree {
+  @media (max-width: 670px) {
+    @content;
+  }
+}
+
+@mixin breakPointFour {
   @media (max-width: 430px) {
     @content;
   }

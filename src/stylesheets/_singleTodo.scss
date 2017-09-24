@@ -11,7 +11,12 @@
 			font-size: 1.2em;
 		}
 	}
-
+	.todoTitle {
+		cursor: pointer;
+		&:hover {
+			color: $blue;
+		}
+	}
 	&.isDone {
 		color: $lightGray;
 		text-decoration: line-through;
