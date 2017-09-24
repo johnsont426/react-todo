@@ -15,6 +15,7 @@
 	overflow: auto;
 	background-color: #fff;
 	outline: none;
+	font-family: sans-serif;
 	.titleInputContainer {
 		@include modalInputContainer;
 		align-items: center;
@@ -80,7 +81,7 @@
 	@include breakPointTwo {
 		left: 10%;
 	}
-	
+
 	@include breakPointThree {
 		left: 5%;
 		width: 350px;
