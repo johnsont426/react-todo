@@ -12,7 +12,7 @@ function mapStateToProps ({modal, todos}) {
 
   return {
     isOpen: modal.get('isOpen'),
-    isSubmitDisabled: titleLength === 0 || descriptionLength === 0,
+    isSubmitDisabled: titleLength === 0,
     isMarkAsCompleteDisabled: todos.get('editingTodo') === null || todos.getIn(['editingTodo', 'isDone']) === true,
     date: modal.get('date'),
     month: modal.get('month'),
