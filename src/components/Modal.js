@@ -49,7 +49,7 @@ export default function Modal (props) {
     	</div>
     	<div className="datePickerContainer">
     		<label>Due Date</label>
-        <select id="day" name="day" className="dateInput" onChange={(e) => updateDate(e.target.value)}>
+        <select id="day" name="day" className="dateInput" value={date} onChange={(e) => updateDate(e.target.value)}>
         	{dateOptionsArray.map((date) => <option key={date}>{date}</option>)}
         </select>
 	      <span>/</span>
